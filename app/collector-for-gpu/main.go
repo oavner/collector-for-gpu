@@ -25,7 +25,7 @@ func main() {
 	defer client.Close()
 
 	// Specify the namespace (default in this case)
-	namespace := "default"
+	// namespace := "default"
 
 	// Get all containers in the specified namespace
 	containerSummaries, err := getContainers(client, namespace)
