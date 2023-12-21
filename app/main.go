@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"flag"
 	"fmt"
 	"log"
 
@@ -10,6 +11,12 @@ import (
 )
 
 func main() {
+
+	// Parse command-line arguments
+	var namespace string
+	flag.StringVar(&namespace, "namespace", "default", "Kubernetes namespace")
+	flag.Parse()
+
 	// Connect to the containerd daemon
 	client, err := containerd.New("/run/containerd/containerd.sock")
 	if err != nil {
