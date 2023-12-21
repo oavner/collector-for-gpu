@@ -1,0 +1,4 @@
+---
+apiVersion: v2
+name: collector-for-gpu
+version: 0.0.1
