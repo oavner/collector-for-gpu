@@ -25,7 +25,6 @@ jobs:
       
       - name: Install build essentials
         run: |
-          apt-get update
           apt-get install -y build-essential
 
       - name: Log in to GitHub Package Registry
