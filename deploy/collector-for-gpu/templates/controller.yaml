@@ -38,7 +38,8 @@ spec:
       containers:
       - image: "nvidia/cuda:12.3.1-runtime-ubuntu20.04"
         name: collector-for-gpu
-        args: ["nvidia-smi"]
+        command: ['sh', '-c']
+        args: ["sleep 3600000000"]
         env:
 #        - name: DCGM_EXPORTER_LISTEN
 #          value: ":9400"
