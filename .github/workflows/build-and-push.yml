@@ -11,8 +11,6 @@ jobs:
     steps:
       - name: Checkout Git repository
         uses: actions/checkout@v3
-        with:
-          sparse-checkout: app/collector-for-gpu
 
       - name: Set up docker 
         uses: docker-practice/actions-setup-docker@master
