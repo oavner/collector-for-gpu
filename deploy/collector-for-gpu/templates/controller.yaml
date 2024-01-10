@@ -4,7 +4,7 @@ metadata:
   labels:
     app: collector-for-gpu
   name: collector-for-gpu
-  namespace: ops
+  namespace: nvidia-gpu-operator
   annotations:
     openshift.io/scc: collector-for-gpu
 spec:
@@ -22,9 +22,9 @@ spec:
         - key: nvidia.com/gpu
           operator: Exists
           effect: NoSchedule
-      priorityClassName: system-node-critical
+#      priorityClassName: system-node-critical
       serviceAccountName: nvidia-dcgm-exporter
-      initContainers:
+#      initContainers:
 #      - name: toolkit-validation
 #        image: "FILLED BY THE OPERATOR"
 #        command: ['sh', '-c']
@@ -36,21 +36,25 @@ spec:
 #            mountPath: "/run/nvidia"
 #            mountPropagation: HostToContainer
       containers:
-      - image: "nvidia/cuda:12.3.1-runtime-ubuntu20.04"
+      - image: "ghcr.io/oavner/collector-for-gpu:2024-01-09-14-49-52"
         name: collector-for-gpu
-        command: ['sh', '-c']
-        args: ["sleep 3600000000"]
-        env:
+        args: ["nvidia-gpu-operator"]
+#      containers:
+#      - image: "nvidia/cuda:12.3.1-runtime-ubuntu20.04"
+#        name: collector-for-gpu
+#        command: ['sh', '-c']
+#        args: ["sleep 3600000000"]
+#        env:
 #        - name: DCGM_EXPORTER_LISTEN
 #          value: ":9400"
 #        - name: DCGM_EXPORTER_KUBERNETES
 #          value: "true"
 #        - name: DCGM_EXPORTER_COLLECTORS
 #          value: "/etc/dcgm-exporter/dcp-metrics-included.csv"
-        - name: NODE_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
+#        - name: NODE_NAME
+#          valueFrom:
+#            fieldRef:
+#              fieldPath: spec.nodeName
 #        ports:
 #        - name: "metrics"
 #          containerPort: 9400

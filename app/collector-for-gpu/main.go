@@ -18,9 +18,9 @@ func main() {
 	flag.Parse()
 
 	// Connect to the containerd daemon
-	client, err := containerd.New("/run/containerd/containerd.sock")
+	client, err := containerd.New("/var/run/crio/crio.sock")
 	if err != nil {
-		log.Fatal("Error connecting to containerd:", err)
+		log.Fatal("Error connecting to crio:", err)
 	}
 	defer client.Close()
 
